@@ -133,8 +133,8 @@ const MainLayout = () => {
         {/* Header section with navigation controls and branding */}
         <Header
           className={`flex border-b
-                border-b-gray-400 items-center px-2 sticky top-0 z-10 justify-between h-12 md:h-16 ${
-            isDarkMode ? "bg-black" : "bg-white"
+                 items-center px-2 sticky top-0 z-10 justify-between h-12 md:h-16 ${
+            isDarkMode ? "bg-black border-b-[#9ca3af88]" : "bg-white border-b-gray-400"
           }`}
         >
           <div className="flex items-center">
@@ -197,10 +197,10 @@ const MainLayout = () => {
               trigger={null}
               collapsedWidth={isMobile ? 0 : 80}
               className={`
-                ${isDarkMode ? "bg-black" : "bg-white"}
-                overflow-auto
                 border-r
-                border-r-gray-400
+                ${isDarkMode ? "bg-black border-r-[#9ca3af88]" : "bg-white border-r-gray-400"}
+                overflow-auto
+                
                 h-[calc(100vh+0em)]
                 md:h-[calc(100vh-4rem)]
                 fixed
@@ -222,7 +222,7 @@ const MainLayout = () => {
               <Menu
                 mode="inline"
                 defaultOpenKeys={["sub1"]}
-                className={`h-full border-r-0 ${isDarkMode ? "bg-black" : "bg-white"} `}
+                className={`h-full  ${isDarkMode ? "bg-black" : "bg-white"} `}
                 items={sideNavItems}
                 theme={isDarkMode ? "dark" : "light"}
                 inlineCollapsed={!isMobile && collapsed}
