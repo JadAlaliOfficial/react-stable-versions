@@ -1,18 +1,41 @@
-import ShinyCard from '../ShinyCard';
-import { useTheme } from '../ThemeContext';
+import { CarOutlined } from "@ant-design/icons";
+import InfoCardBG from "../components/InfoCardBG";
+import { useTheme } from "../ThemeContext";
 
 const Dashboard = () => {
-  const { toggleTheme } = useTheme();
-
+  const { isDarkMode } = useTheme();
+  
   return (
-    <div>
-      <button
-        onClick={toggleTheme}
-        className="px-4 py-2 mb-4 rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-      >
-        Toggle Theme
-      </button>
-      <ShinyCard />
+    <div className="flex justify-between gap-2">
+      <InfoCardBG
+        titleText="Waste Altmetrics"
+        icon={<CarOutlined
+            className={`text-xs md:text-base lg:text-lg   ${
+              isDarkMode ? "text-black" : "text-white"
+            }`}
+           />}
+        lightBgColor="bg-[#777]"
+        darkBgColor="bg-[#777]"
+        dailyText="Daily"
+        dailyValue="100"
+        weeklyText="Weekly"
+        weeklyValue="200"
+      />
+      <InfoCardBG
+        titleText="Waste"
+        icon={<CarOutlined
+            className={`text-xs md:text-base lg:text-lg   ${
+              isDarkMode ? "text-black" : "text-white"
+            }`}
+           />}
+        lightBgColor="bg-[#777]"
+        darkBgColor="bg-[#777]"
+        dailyText="Daily"
+        dailyValue="344"
+        weeklyText="Weekly"
+        weeklyValue="511"
+      />
+      
     </div>
   );
 };

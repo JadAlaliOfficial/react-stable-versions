@@ -9,7 +9,8 @@ import {
 import {
   DashboardOutlined,
   UserOutlined,
-  TeamOutlined,
+  SunOutlined,
+  MoonOutlined,
   FileOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -32,7 +33,7 @@ const { Header, Content, Sider } = Layout;
  */
 const MainLayout = () => {
   // Theme context to manage dark/light mode
-  const { isDarkMode } = useTheme();
+  const { isDarkMode, toggleTheme } = useTheme();
 
   // Router location for breadcrumbs
   const location = useLocation();
@@ -134,8 +135,10 @@ const MainLayout = () => {
         <Header
           className={`flex border-b
                  items-center px-2 sticky top-0 z-10 justify-between h-12 md:h-16 ${
-            isDarkMode ? "bg-black border-b-[#9ca3af88]" : "bg-white border-b-gray-400"
-          }`}
+                   isDarkMode
+                     ? "bg-black border-b-[#9ca3af88]"
+                     : "bg-white border-b-gray-400"
+                 }`}
         >
           <div className="flex items-center">
             {/* Button to toggle sidebar (different behavior on mobile/desktop) */}
@@ -172,6 +175,14 @@ const MainLayout = () => {
           {/* Header right section with notification and profile icons */}
           <div className="flex items-center gap-4">
             <BellOutlined className="text-xl" />
+            <Button
+              onClick={toggleTheme}
+              type="text"
+              className={`flex items-center justify-center text-xl ${
+                isDarkMode ? "text-white" : "text-black"
+              }`}
+              icon={isDarkMode ? <SunOutlined /> : <MoonOutlined />}
+            />
             <UserOutlined className="text-xl" />
           </div>
         </Header>
@@ -198,7 +209,11 @@ const MainLayout = () => {
               collapsedWidth={isMobile ? 0 : 80}
               className={`
                 border-r
-                ${isDarkMode ? "bg-black border-r-[#9ca3af88]" : "bg-white border-r-gray-400"}
+                ${
+                  isDarkMode
+                    ? "bg-black border-r-[#9ca3af88]"
+                    : "bg-white border-r-gray-400"
+                }
                 overflow-auto
                 
                 h-[calc(100vh+0em)]
@@ -232,9 +247,10 @@ const MainLayout = () => {
 
           {/* Main content area that adjusts based on sidebar state */}
           <Layout
-            className={`transition-all duration-300 ease-in-out ${isDarkMode ? "bg-black" : "bg-white"} `}
+            className={`transition-all duration-300 ease-in-out p-0 md:px-2 lg:px-4 ${
+              isDarkMode ? "bg-black" : "bg-white" 
+            } `}
             style={{
-              padding: "0 24px 24px",
               marginLeft: isMobile ? 0 : undefined,
             }}
           >
@@ -249,8 +265,10 @@ const MainLayout = () => {
 
             {/* Main content container where routes will be rendered */}
             <Content
-              className={`p-6 my-0 min-h-[280px] rounded-lg  ${
-                isDarkMode ? "bg-[#0a0a0a] shadow-custom-dark" : "bg-[#f7f7f7] shadow-custom"
+              className={`p-2 md:p-4 lg:p-6 my-0 min-h-[280px] rounded-lg  ${
+                isDarkMode
+                  ? "bg-[#0a0a0a] shadow-custom-dark"
+                  : "bg-[#f7f7f7] shadow-custom"
               }`}
             >
               <Outlet /> {/* This is where child routes will be rendered */}
