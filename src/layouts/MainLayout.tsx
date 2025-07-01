@@ -17,7 +17,7 @@ import {
   BellOutlined,
 } from "@ant-design/icons";
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { useTheme } from "./ThemeContext";
+import { useTheme } from "../ThemeContext";
 import { useState, useEffect } from "react";
 
 const { Header, Content, Sider } = Layout;
@@ -134,11 +134,7 @@ const MainLayout = () => {
         {/* Header section with navigation controls and branding */}
         <Header
           className={`flex border-b
-                 items-center px-2 sticky top-0 z-10 justify-between h-12 md:h-16 ${
-                   isDarkMode
-                     ? "bg-black border-b-[#9ca3af88]"
-                     : "bg-white border-b-gray-400"
-                 }`}
+                 items-center px-2 sticky top-0 z-10 justify-between h-12 md:h-16 bg-background border-b-border`}
         >
           <div className="flex items-center">
             {/* Button to toggle sidebar (different behavior on mobile/desktop) */}
@@ -158,15 +154,11 @@ const MainLayout = () => {
                 )
               }
               onClick={isMobile ? toggleSiderVisible : toggleCollapsed}
-              className={`${
-                isDarkMode ? "text-white" : "text-black"
-              } text-xl flex items-center justify-center mr-3`}
+              className={` text-foreground text-xl flex items-center justify-center mr-3`}
             />
             {/* Application title */}
             <div
-              className={`text-lg font-bold ${
-                isDarkMode ? "text-white" : "text-black"
-              }`}
+              className={`text-lg font-bold text-foreground`}
             >
               SaaS Platform
             </div>
@@ -178,9 +170,7 @@ const MainLayout = () => {
             <Button
               onClick={toggleTheme}
               type="text"
-              className={`flex items-center justify-center text-xl ${
-                isDarkMode ? "text-white" : "text-black"
-              }`}
+              className={`flex items-center justify-center text-xl text-foreground`}
               icon={isDarkMode ? <SunOutlined /> : <MoonOutlined />}
             />
             <UserOutlined className="text-xl" />
@@ -209,13 +199,8 @@ const MainLayout = () => {
               collapsedWidth={isMobile ? 0 : 80}
               className={`
                 border-r
-                ${
-                  isDarkMode
-                    ? "bg-black border-r-[#9ca3af88]"
-                    : "bg-white border-r-gray-400"
-                }
+                bg-background border-r-border
                 overflow-auto
-                
                 h-[calc(100vh+0em)]
                 md:h-[calc(100vh-4rem)]
                 fixed
@@ -237,7 +222,7 @@ const MainLayout = () => {
               <Menu
                 mode="inline"
                 defaultOpenKeys={["sub1"]}
-                className={`h-full  ${isDarkMode ? "bg-black" : "bg-white"} `}
+                className={`h-full bg-background `}
                 items={sideNavItems}
                 theme={isDarkMode ? "dark" : "light"}
                 inlineCollapsed={!isMobile && collapsed}
@@ -247,9 +232,7 @@ const MainLayout = () => {
 
           {/* Main content area that adjusts based on sidebar state */}
           <Layout
-            className={`transition-all duration-300 ease-in-out p-0 md:px-2 lg:px-4 ${
-              isDarkMode ? "bg-black" : "bg-white" 
-            } `}
+            className={`transition-all duration-300 ease-in-out p-0 md:px-2 lg:px-4 bg-background `}
             style={{
               marginLeft: isMobile ? 0 : undefined,
             }}
@@ -265,11 +248,7 @@ const MainLayout = () => {
 
             {/* Main content container where routes will be rendered */}
             <Content
-              className={`p-2 md:p-4 lg:p-6 my-0 min-h-[280px] rounded-lg  ${
-                isDarkMode
-                  ? "bg-[#0a0a0a] shadow-custom-dark"
-                  : "bg-[#f7f7f7] shadow-custom"
-              }`}
+              className={`p-2 md:p-4 lg:p-6 my-0 min-h-[280px] rounded-lg bg-lighter-background shadow-custom`}
             >
               <Outlet /> {/* This is where child routes will be rendered */}
             </Content>

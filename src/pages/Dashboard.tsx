@@ -11,9 +11,7 @@ const Dashboard = () => {
         titleText="Waste Altmetrics"
         icon={
           <CarOutlined
-            className={`text-xs md:text-base lg:text-lg   ${
-              isDarkMode ? "text-black" : "text-white"
-            }`}
+            className={`text-xs md:text-base lg:text-lg text-foreground`}
           />
         }
         lightBgColor="bg-[#777]"
