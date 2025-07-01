@@ -1,5 +1,5 @@
 .shiny-text {
-  color: #ffffff99;
+  color: #ffffffcc;
   background: linear-gradient(
     120deg,
     rgba(255, 255, 255, 0) 40%,
@@ -14,7 +14,7 @@
 }
 
 .shiny-text.light-mode {
-  color: #00000099; /* Darker text for light background */
+  color: #000000cc; /* Darker text for light background */
   background: linear-gradient(
     120deg,
     rgba(0, 0, 0, 0) 40%,

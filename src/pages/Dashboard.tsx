@@ -4,16 +4,18 @@ import { useTheme } from "../ThemeContext";
 
 const Dashboard = () => {
   const { isDarkMode } = useTheme();
-  
+
   return (
     <div className="flex justify-between gap-2">
       <InfoCardBG
         titleText="Waste Altmetrics"
-        icon={<CarOutlined
+        icon={
+          <CarOutlined
             className={`text-xs md:text-base lg:text-lg   ${
               isDarkMode ? "text-black" : "text-white"
             }`}
-           />}
+          />
+        }
         lightBgColor="bg-[#777]"
         darkBgColor="bg-[#777]"
         dailyText="Daily"
@@ -23,11 +25,13 @@ const Dashboard = () => {
       />
       <InfoCardBG
         titleText="Waste"
-        icon={<CarOutlined
+        icon={
+          <CarOutlined
             className={`text-xs md:text-base lg:text-lg   ${
               isDarkMode ? "text-black" : "text-white"
             }`}
-           />}
+          />
+        }
         lightBgColor="bg-[#777]"
         darkBgColor="bg-[#777]"
         dailyText="Daily"
@@ -35,7 +39,6 @@ const Dashboard = () => {
         weeklyText="Weekly"
         weeklyValue="511"
       />
-      
     </div>
   );
 };
