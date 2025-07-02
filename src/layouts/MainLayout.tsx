@@ -16,7 +16,8 @@ import {
   MenuUnfoldOutlined,
   BellOutlined,
 } from "@ant-design/icons";
-import { Outlet, Link, useLocation } from "react-router-dom";
+// Add this to your imports at the top
+import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
 import { useTheme } from "../ThemeContext";
 import { useState, useEffect } from "react";
 
@@ -42,6 +43,8 @@ const MainLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [siderVisible, setSiderVisible] = useState(false);
+  // Add this line near your other hooks
+  const navigate = useNavigate();
 
   /**
    * Effect hook to handle responsive behavior:
@@ -49,6 +52,7 @@ const MainLayout = () => {
    * - Manages sidebar visibility based on screen size
    * - Desktop: sidebar visible by default
    * - Mobile: sidebar hidden by default
+   * - Uses debouncing to limit resize event handler execution
    */
   useEffect(() => {
     const checkMobile = () => {
@@ -63,9 +67,30 @@ const MainLayout = () => {
       }
     };
 
+    // Debounce function to limit how often the resize handler executes
+    const debounce = (func: (...args: any[]) => void, delay: number) => {
+      let timeoutId: ReturnType<typeof setTimeout>;
+      return function(...args: any[]) {
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+        }
+        timeoutId = setTimeout(() => {
+          func.apply(null, args);
+        }, delay);
+      };
+    };
+
+    // Create debounced version of checkMobile with 100ms delay
+    const debouncedCheckMobile = debounce(checkMobile, 100);
+
+    // Initial check without debouncing
     checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+    
+    // Add event listener with debounced handler
+    window.addEventListener("resize", debouncedCheckMobile);
+    
+    // Cleanup function to remove event listener
+    return () => window.removeEventListener("resize", debouncedCheckMobile);
   }, []);
 
   // Toggle sidebar collapse state (desktop)
@@ -134,9 +159,9 @@ const MainLayout = () => {
         {/* Header section with navigation controls and branding */}
         <Header
           className={`flex border-b
-                 items-center px-2 sticky top-0 z-10 justify-between h-12 md:h-16 bg-background border-b-border`}
+                 items-center px-2 sticky top-0 z-10 justify-between h-12 md:h-16 text-header-foreground bg-header-background border-b-header-border`}
         >
-          <div className="flex items-center">
+          <div className="flex items-center ">
             {/* Button to toggle sidebar (different behavior on mobile/desktop) */}
             <Button
               type="text"
@@ -154,26 +179,42 @@ const MainLayout = () => {
                 )
               }
               onClick={isMobile ? toggleSiderVisible : toggleCollapsed}
-              className={` text-foreground text-xl flex items-center justify-center mr-3`}
+              className={`text-header-foreground text-xl flex items-center justify-center mr-3`}
+              aria-label={isMobile ? (siderVisible ? "Close menu" : "Open menu") : (collapsed ? "Expand sidebar" : "Collapse sidebar")}
+              aria-expanded={isMobile ? siderVisible : !collapsed}
+              aria-controls="main-navigation"
             />
             {/* Application title */}
-            <div
-              className={`text-lg font-bold text-foreground`}
-            >
+            <div className={`text-lg font-bold text-header-foreground`}>
               SaaS Platform
             </div>
           </div>
 
           {/* Header right section with notification and profile icons */}
           <div className="flex items-center gap-4">
-            <BellOutlined className="text-xl" />
+            <Button
+              // onClick={toggleTheme}
+              type="text"
+              className={`flex items-center justify-center text-xl text-header-foreground`}
+              icon={<BellOutlined />}
+              aria-label="Notifications"
+            />
             <Button
               onClick={toggleTheme}
               type="text"
-              className={`flex items-center justify-center text-xl text-foreground`}
+              className={`flex items-center justify-center text-xl text-header-foreground`}
               icon={isDarkMode ? <SunOutlined /> : <MoonOutlined />}
+              aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+              aria-pressed={isDarkMode}
             />
-            <UserOutlined className="text-xl" />
+
+            <Button
+              onClick={() => navigate("/auth/login")}
+              type="text"
+              className={`flex items-center justify-center text-xl text-header-foreground`}
+              icon={<UserOutlined />}
+              aria-label="User profile"
+            />
           </div>
         </Header>
 
@@ -186,6 +227,7 @@ const MainLayout = () => {
                 siderVisible ? "opacity-100" : "opacity-0 pointer-events-none"
               }`}
               onClick={handleOutsideClick}
+              aria-hidden="true"
             />
           )}
 
@@ -199,7 +241,7 @@ const MainLayout = () => {
               collapsedWidth={isMobile ? 0 : 80}
               className={`
                 border-r
-                bg-background border-r-border
+                bg-sidebar-background border-r-sidebar-border
                 overflow-auto
                 h-[calc(100vh+0em)]
                 md:h-[calc(100vh-4rem)]
@@ -217,22 +259,26 @@ const MainLayout = () => {
                 }
               `}
               theme={isDarkMode ? "dark" : "light"}
+              id="main-navigation"
+              aria-label="Main navigation"
             >
               {/* Navigation menu with items defined in sideNavItems */}
               <Menu
                 mode="inline"
                 defaultOpenKeys={["sub1"]}
-                className={`h-full bg-background `}
+                className={`h-full bg-sidebar-background `}
                 items={sideNavItems}
                 theme={isDarkMode ? "dark" : "light"}
                 inlineCollapsed={!isMobile && collapsed}
+                role="menu"
+                aria-label="Site navigation"
               />
             </Sider>
           )}
 
           {/* Main content area that adjusts based on sidebar state */}
           <Layout
-            className={`transition-all duration-300 ease-in-out p-0 md:px-2 lg:px-4 bg-background `}
+            className={`transition-all duration-300 ease-in-out p-0 md:px-2 lg:px-4 bg-content-background `}
             style={{
               marginLeft: isMobile ? 0 : undefined,
             }}

@@ -6,10 +6,26 @@ const config = {
   theme: {
     extend: {
       colors: {
+        // background
         background: "var(--color-background)",
+        "lighter-background": "var(--color-lighter-background)",
+        "auth-background": "var(--color-auth-background)",
+        "auth-card-background": "var(--color-auth-card-background)",
+        "sidebar-background": "var(--color-sidebar-background)",
+        "header-background": "var(--color-header-background)",
+        "content-background": "var(--color-content-background)",
+        "selected-background": "var(--color-selected-background)",
+        "button-background": "var(--color-button-background)",
+        //foreground
         foreground: "var(--color-foreground)",
-        "lighter-background":"var(--color-lighter-background)",
-        "lighter-foreground":"var(--color-lighter-foreground)",
+        "lighter-foreground": "var(--color-lighter-foreground)",
+        "sidebar-foreground": "var(--color-foreground)",
+        "header-foreground": "var(--color-foreground)",
+        "content-foreground": "var(--color-foreground)",
+        //border
+         border: "var(--color-border)",
+         "header-border": "var(--color-header-border)",
+         "sidebar-border": "var(--color-sidebar-border)",
 
         card: "var(--color-card)",
         "card-foreground": "var(--color-card-foreground)",
@@ -39,7 +55,7 @@ const config = {
         destructive: "var(--color-destructive)",
         "destructive-foreground": "var(--color-destructive-foreground)",
 
-        border: "var(--color-border)",
+       
         input: "var(--color-input)",
         ring: "var(--color-ring)",
 
@@ -60,7 +76,6 @@ const config = {
       },
       boxShadow: {
         custom: "var(--shadow-custome)", // White shadow for dark mode
-
       },
       keyframes: {
         shine: {

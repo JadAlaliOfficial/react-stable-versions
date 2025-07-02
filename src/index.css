@@ -3,11 +3,27 @@
 @tailwind utilities;
 
 :root {
+  /* used */
+  /* background */
   --color-background: #ffffff;
   --color-lighter-background: #f7f7f7;
-  --color-border: #9ca3af;
+  --color-auth-background: var(--color-background);
+  --color-auth-card-background: var(--color-lighter-background);
+  --color-sidebar-background: var(--color-background);
+  --color-header-background: var(--color-background);
+  --color-content-background: var(--color-background);
+  --color-selected-background: #6f78de ;
+  --color-button-background: #6f78de ;
+  /* foreground */
   --color-foreground: #000000;
   --color-lighter-foreground: #0a0a0a;
+  --color-sidebar-foreground: var(--color-foreground);
+  --color-header-foreground: var(--color-foreground);
+  --color-content-foreground: var(--color-foreground);
+  /* border */
+  --color-border: #9ca3af;
+  --color-sidebar-border: var(--color-border);
+  --color-header-border: var(--color-border);
 
   --color-card: #ffffff;
   --color-card-foreground: #1a56a3;
@@ -23,7 +39,6 @@
   --color-accent-foreground: #2e3a8f;
   --color-destructive: #e53e3e;
   --color-destructive-foreground: #fafafa;
-  --color-border: #ededed;
   --color-input: #e5e5e5;
   --color-ring: #2e368f;
   --color-chart-1: #2e368f;
@@ -39,11 +54,29 @@
 
 /* Also add it to dark mode if needed */
 html.dark {
+  /* used */
+  /* background */
   --color-background: #000000;
   --color-lighter-background: #0a0a0a;
-  --color-border: #9ca3af88;
+  --color-auth-background: var(--color-background);
+  --color-auth-card-background: var(--color-lighter-background);
+  --color-sidebar-background: var(--color-background);
+  --color-header-background: var(--color-background);
+  --color-content-background: var(--color-background);
+  --color-selected-background: #6f78de ;
+  --color-button-background: #6f78de ;
+  /* foreground */
   --color-foreground: #ffffff;
+  --color-lighter-foreground: #f7f7f7;
+  --color-sidebar-foreground: var(--color-foreground);
+  --color-header-foreground: var(--color-foreground);
+  --color-content-foreground: var(--color-foreground);
+  /* border */
+  --color-border: #9ca3af88;
+  --color-sidebar-border: var(--color-border);
+  --color-header-border: var(--color-border);
 
+  /* not used yet */
   --color-card: #191c23;
   --color-card-foreground: #fafafa;
   --color-popover: #191c23;
@@ -58,7 +91,6 @@ html.dark {
   --color-accent-foreground: #fafafa;
   --color-destructive: #e53e3e;
   --color-destructive-foreground: #fafafa;
-  --color-border: #262626;
   --color-input: #262626;
   --color-ring: #6f78de;
   --color-chart-1: #6f78de;
@@ -70,14 +102,34 @@ html.dark {
   --shadow-custome: "0 0px 2px rgba(255, 255, 255, 0.5)";
 }
 
-.ant-menu-title-content{
-    color: var('--accent-foreground') !important;
+.ant-menu-sub {
+    background-color: var(--color-sidebar-background) !important;
 }
 
-.ant-menu-item-icon{
-     color: var('--accent-foreground') !important;
+.ant-menu-item-selected {
+   background-color: var(--color-selected-background) !important;
 }
 
+.ant-menu-title-content {
+  color: var(--color-sidebar-foreground) !important;
+}
+
+.ant-menu-item-icon {
+  color: var(--color-sidebar-foreground) !important;
+}
+
+.ant-breadcrumb-link {
+  color: color-mix(in srgb, var(--color-content-foreground), white 30%) !important;
+}
+
+.dark .ant-breadcrumb-link {
+  /* Dark mode: mix with black instead of white */
+  color: color-mix(in srgb, var(--color-content-foreground), black 20%) !important;
+}
+
+ol > li:last-of-type > .ant-breadcrumb-link {
+  color: var(--color-content-foreground) !important;
+}
 
 /* 
 @tailwind base;

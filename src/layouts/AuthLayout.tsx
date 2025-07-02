@@ -1,7 +1,6 @@
 import { ConfigProvider, Layout, theme as antdTheme } from "antd";
 import { Outlet } from "react-router-dom";
 import { useTheme } from "../ThemeContext";
-import type { ReactNode } from "react";
 
 const { Content } = Layout;
 
@@ -13,7 +12,7 @@ const { Content } = Layout;
  * - Consistent theming with the main app
  * - No navigation elements
  */
-    const AuthLayout = () => {
+const AuthLayout = () => {
   // Theme context to maintain consistent dark/light mode
   const { isDarkMode } = useTheme();
 
@@ -27,16 +26,14 @@ const { Content } = Layout;
       }}
     >
       {/* Full viewport layout with centered content */}
-      <Layout className="min-h-screen bg-background">
+      <Layout className="min-h-screen bg-auth-background">
         {/* Main content area centered both horizontally and vertically */}
         <Content className="flex flex-col items-center justify-center p-4">
           {/* Logo container with consistent spacing */}
-          <div className="mb-8 flex justify-center">
-            logo
-          </div>
-          
+          <div className="mb-8 flex justify-center">logo</div>
+
           {/* Authentication form/content area with consistent styling */}
-          <div className="w-full max-w-md p-6 rounded-lg bg-lighter-background shadow-custom">
+          <div className="w-full max-w-md p-6 rounded-lg bg-auth-card-background shadow-custom">
             <Outlet /> {/* Child routes will render here */}
           </div>
         </Content>
