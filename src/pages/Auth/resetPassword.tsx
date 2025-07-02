@@ -102,7 +102,7 @@ const ResetPasswordPage = () => {
 
           <Form.Item>
             <Button
-              type="dashed"
+              type="primary"
               htmlType="submit"
               block
               size="large"

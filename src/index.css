@@ -1,113 +1,101 @@
+/* ======================================================
+ * Main CSS File
+ * This file contains all global styles for the application
+ * ====================================================== */
+
+/* Tailwind CSS Imports */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ======================================================
+ * Light Theme Variables (Default)
+ * ====================================================== */
 :root {
-  /* used */
-  /* background */
+  /* Base Colors */
   --color-background: #ffffff;
   --color-lighter-background: #f7f7f7;
-  --color-auth-background: var(--color-background);
-  --color-auth-card-background: var(--color-lighter-background);
-  --color-sidebar-background: var(--color-background);
-  --color-header-background: var(--color-background);
-  --color-content-background: var(--color-background);
-  --color-selected-background: #6f78de ;
-  --color-button-background: #6f78de ;
-  /* foreground */
   --color-foreground: #000000;
   --color-lighter-foreground: #0a0a0a;
-  --color-sidebar-foreground: var(--color-foreground);
-  --color-header-foreground: var(--color-foreground);
-  --color-content-foreground: var(--color-foreground);
-  /* border */
   --color-border: #9ca3af;
-  --color-sidebar-border: var(--color-border);
-  --color-header-border: var(--color-border);
-
-  --color-card: #ffffff;
-  --color-card-foreground: #1a56a3;
-  --color-popover: #ffffff;
-  --color-popover-foreground: #1a56a3;
-  --color-primary: #2e368f;
-  --color-primary-foreground: #fafafa;
-  --color-secondary: #e93232;
-  --color-secondary-foreground: #fafafa;
-  --color-muted: #f5f5f5;
-  --color-muted-foreground: #737373;
-  --color-accent: #eceffa;
-  --color-accent-foreground: #2e3a8f;
-  --color-destructive: #e53e3e;
-  --color-destructive-foreground: #fafafa;
-  --color-input: #e5e5e5;
-  --color-ring: #2e368f;
-  --color-chart-1: #2e368f;
-  --color-chart-2: #e93232;
-  --color-chart-3: #1f3a47;
-  --color-chart-4: #f0c14b;
-  --color-chart-5: #f39c12;
-
-  /* Add the font-sans variable */
-  --font-sans: sans-serif;
-  --shadow-custome: "0 0px 2px  rgba(0, 0, 0, 0.5)";
-}
-
-/* Also add it to dark mode if needed */
-html.dark {
-  /* used */
-  /* background */
-  --color-background: #000000;
-  --color-lighter-background: #0a0a0a;
+  
+  /* Component-specific Background Colors */
   --color-auth-background: var(--color-background);
   --color-auth-card-background: var(--color-lighter-background);
   --color-sidebar-background: var(--color-background);
   --color-header-background: var(--color-background);
   --color-content-background: var(--color-background);
-  --color-selected-background: #6f78de ;
-  --color-button-background: #6f78de ;
-  /* foreground */
-  --color-foreground: #ffffff;
-  --color-lighter-foreground: #f7f7f7;
+  --color-selected-background: #6f78de;
+  --color-button-background: #6f78de;
+  
+  /* Component-specific Foreground Colors */
   --color-sidebar-foreground: var(--color-foreground);
   --color-header-foreground: var(--color-foreground);
   --color-content-foreground: var(--color-foreground);
-  /* border */
-  --color-border: #9ca3af88;
+  --color-auth-form-primary-foreground: var(--color-foreground);
+  --color-auth-form-link-foreground: #1554ad;
+  --color-auth-form-link-hover-foreground: #15417e;
+  --color-auth-form-link-visited-foreground: #7506dd;
+  
+  /* Component-specific Border Colors */
   --color-sidebar-border: var(--color-border);
   --color-header-border: var(--color-border);
-
-  /* not used yet */
-  --color-card: #191c23;
-  --color-card-foreground: #fafafa;
-  --color-popover: #191c23;
-  --color-popover-foreground: #fafafa;
-  --color-primary: #6f78de;
-  --color-primary-foreground: #171717;
-  --color-secondary: #ff3333;
-  --color-secondary-foreground: #fafafa;
-  --color-muted: #111111;
-  --color-muted-foreground: #a3a3a3;
-  --color-accent: #2e3a8f;
-  --color-accent-foreground: #fafafa;
-  --color-destructive: #e53e3e;
-  --color-destructive-foreground: #fafafa;
-  --color-input: #262626;
-  --color-ring: #6f78de;
-  --color-chart-1: #6f78de;
-  --color-chart-2: #ff3333;
-  --color-chart-3: #e67e22;
-  --color-chart-4: #b794f4;
-  --color-chart-5: #f56565;
-
-  --shadow-custome: "0 0px 2px rgba(255, 255, 255, 0.5)";
+  
+  /* Typography */
+  --font-sans: sans-serif;
+  
+  /* Effects */
+  --shadow-custom: 0 0px 2px rgba(0, 0, 0, 0.5);
 }
 
+/* ======================================================
+ * Dark Theme Variables
+ * ====================================================== */
+html.dark {
+  /* Base Colors */
+  --color-background: #000000;
+  --color-lighter-background: #0a0a0a;
+  --color-foreground: #ffffff;
+  --color-lighter-foreground: #f7f7f7;
+  --color-border: #9ca3af88;
+  
+  /* Component-specific Background Colors */
+  --color-auth-background: var(--color-background);
+  --color-auth-card-background: var(--color-lighter-background);
+  --color-sidebar-background: var(--color-background);
+  --color-header-background: var(--color-background);
+  --color-content-background: var(--color-background);
+  --color-selected-background: #6f78de;
+  --color-button-background: #6f78de;
+  
+  /* Component-specific Foreground Colors */
+  --color-sidebar-foreground: var(--color-foreground);
+  --color-header-foreground: var(--color-foreground);
+  --color-content-foreground: var(--color-foreground);
+  --color-auth-form-primary-foreground: var(--color-foreground);
+  --color-auth-form-link-foreground: #1554ad;
+  --color-auth-form-link-hover-foreground: #15417e;
+  --color-auth-form-link-visited-foreground: #7506dd;
+  
+  /* Component-specific Border Colors */
+  --color-sidebar-border: var(--color-border);
+  --color-header-border: var(--color-border);
+  
+  /* Effects */
+  --shadow-custom: 0 0px 2px rgba(255, 255, 255, 0.5);
+}
+
+/* ======================================================
+ * Ant Design Component Overrides
+ * ====================================================== */
+
+/* Sidebar/Menu Components */
 .ant-menu-sub {
-    background-color: var(--color-sidebar-background) !important;
+  background-color: var(--color-sidebar-background) !important;
 }
 
 .ant-menu-item-selected {
-   background-color: var(--color-selected-background) !important;
+  background-color: var(--color-selected-background) !important;
 }
 
 .ant-menu-title-content {
@@ -118,6 +106,7 @@ html.dark {
   color: var(--color-sidebar-foreground) !important;
 }
 
+/* Breadcrumb Components */
 .ant-breadcrumb-link {
   color: color-mix(in srgb, var(--color-content-foreground), white 30%) !important;
 }
@@ -131,196 +120,43 @@ ol > li:last-of-type > .ant-breadcrumb-link {
   color: var(--color-content-foreground) !important;
 }
 
-/* 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-body,
-html {
-    --font-sans:
-        'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+/* Typography Components */
+h3.ant-typography, .ant-form-item-required, .ant-checkbox-label {
+  color: var(--color-auth-form-primary-foreground) !important;
 }
 
-@layer base {
-    :root {
-        --background: #ffffff;
-        --foreground: #1a56a3;
-        --card: #ffffff;
-        --card-foreground: #1a56a3;
-        --popover: #ffffff;
-        --popover-foreground: #1a56a3;
-        
-        --primary: #2e368f;
-        --primary-foreground: #fafafa;
-        
-        --secondary: #e93232;
-        --secondary-foreground: #fafafa;
-        
-        --muted: #f5f5f5;
-        --muted-foreground: #737373;
-        --accent: #eceffa;
-        --accent-foreground: #2e3a8f;
-        --destructive: #e53e3e;
-        --destructive-foreground: #fafafa;
-        --border: #ededed;
-        --input: #e5e5e5;
-        --ring: #2e368f;
-        --chart-1: #2e368f;
-        --chart-2: #e93232;
-        --chart-3: #1f3a47;
-        --chart-4: #f0c14b;
-        --chart-5: #f39c12;
-        --radius: 0.5rem;
-        --sidebar-background: #2d3785;
-        --sidebar-foreground: #1a56a3;
-        --sidebar-primary: #2e368f;
-        --sidebar-primary-foreground: #fafafa;
-        --sidebar-accent: rgba(199, 220, 255, 0.1);
-        --sidebar-accent-foreground: #0d3a6e;
-        --sidebar-border: #e8ebf7;
-        --sidebar-ring: #2e368f;
-
-        --fixing-sidebar-foreground: #ffffff;
-    }
-
-    .dark {
-        --background: #191c23;
-        --foreground: #fafafa;
-        --card: #191c23;
-        --card-foreground: #fafafa;
-        --popover: #191c23;
-        --popover-foreground: #fafafa;
-        
-        --primary: #6f78de;
-        --primary-foreground: #171717;
-        
-        --secondary: #ff3333;
-        --secondary-foreground: #fafafa;
-        
-        --muted: #111111;
-        --muted-foreground: #a3a3a3;
-        --accent: #2e3a8f;
-        --accent-foreground: #fafafa;
-        --destructive: #e53e3e;
-        --destructive-foreground: #fafafa;
-        --border: #262626;
-        --input: #262626;
-        --ring: #6f78de;
-        --chart-1: #6f78de;
-        --chart-2: #ff3333;
-        --chart-3: #e67e22;
-        --chart-4: #b794f4;
-        --chart-5: #f56565;
-        --sidebar-background: #1a2740;
-        --sidebar-foreground: #eceffa;
-        --sidebar-primary: #6f78de;
-        --sidebar-primary-foreground: #ffffff;
-        --sidebar-accent: #2e3a8f;
-        --sidebar-accent-foreground: #eceffa;
-        --sidebar-border: #2e3a8f;
-        --sidebar-ring: #6f78de;
-    }
+span.ant-typography-secondary {
+  color: color-mix(in srgb, var(--color-content-foreground), white 30%) !important;
 }
 
-@layer base {
-    * {
-        @apply border-border;
-    }
-
-    body {
-        @apply bg-background text-foreground;
-    }
-    
-    #nprogress .bar {
-        background: #6f78de !important;
-        height: 3px !important;
-    }
-    
-    #nprogress .peg {
-        box-shadow: 0 0 10px #6f78de, 0 0 5px #6f78de !important;
-    }
-    
-    #nprogress .spinner-icon {
-        border-top-color: #6f78de !important;
-        border-left-color: #6f78de !important;
-    }
-    
-    .dark #nprogress .bar {
-        background: hsl(var(--primary)) !important;
-    }
-    
-    .dark #nprogress .peg {
-        box-shadow: 0 0 10px hsl(var(--primary)), 0 0 5px hsl(var(--primary)) !important;
-    }
-    
-    .dark #nprogress .spinner-icon {
-        border-top-color: hsl(var(--primary)) !important;
-        border-left-color: hsl(var(--primary)) !important;
-    }
+.dark span.ant-typography-secondary {
+  /* Dark mode: mix with black instead of white */
+  color: color-mix(in srgb, var(--color-content-foreground), black 30%) !important;
 }
 
-@layer utilities {
-    .border {
-        @apply border-2;
-    }
-    
-    .border-t {
-        @apply border-t-2;
-    }
-    
-    .border-r {
-        @apply border-r-2;
-    }
-    
-    .border-b {
-        @apply border-b-2;
-    }
-    
-    .border-l {
-        @apply border-l-2;
-    }
+/* Button Components */
+button.ant-btn-primary {
+  background-color: var(--color-button-background) !important;
+  &:hover {
+    background-color: color-mix(in srgb, var(--color-button-background), white 10%) !important;
+  }
 }
 
-@layer utilities {
-    ::-webkit-scrollbar {
-        width: 10px;
-        height: 10px;
-    }
+/* Link Components */
+a.text-primary {
+  color: var(--color-auth-form-link-foreground) !important;
+  &:hover {
+    color: var(--color-auth-form-link-hover-foreground) !important;
+  }
+  &:visited {
+    color: var(--color-auth-form-link-visited-foreground) !important;
+  }
+}
 
-    ::-webkit-scrollbar-track {
-        background: hsl(var(--muted));
-        border-radius: 5px;
+span.ant-input-affix-wrapper {
+    box-shadow: var(--shadow-custom);
+    border: none;
+    &:focus {
+        box-shadow: none;
     }
-
-    ::-webkit-scrollbar-thumb {
-        background: hsl(var(--primary) / 0.7);
-        border-radius: 5px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-        background: hsl(var(--primary));
-    }
-
-    * {
-        scrollbar-width: thin;
-        scrollbar-color: hsl(var(--primary) / 0.7) hsl(var(--muted));
-    }
-
-    .dark ::-webkit-scrollbar-track {
-        background: hsl(var(--muted));
-    }
-
-    .dark ::-webkit-scrollbar-thumb {
-        background: hsl(var(--sidebar-primary));
-        border-radius: 5px;
-    }
-
-    .dark ::-webkit-scrollbar-thumb:hover {
-        background: hsl(var(--primary));
-    }
-
-    .dark * {
-        scrollbar-color: hsl(var(--sidebar-primary)) hsl(var(--muted));
-    }
-} */
+}

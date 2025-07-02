@@ -22,6 +22,7 @@ const config = {
         "sidebar-foreground": "var(--color-foreground)",
         "header-foreground": "var(--color-foreground)",
         "content-foreground": "var(--color-foreground)",
+        "auth-form-foreground": "var(--color-auth-form-foreground)",
         //border
          border: "var(--color-border)",
          "header-border": "var(--color-header-border)",
@@ -75,7 +76,7 @@ const config = {
         "sidebar-ring": "var(--color-sidebar-ring)",
       },
       boxShadow: {
-        custom: "var(--shadow-custome)", // White shadow for dark mode
+        custom: "var(--shadow-custom)", // White shadow for dark mode
       },
       keyframes: {
         shine: {

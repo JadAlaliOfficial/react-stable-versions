@@ -32,10 +32,10 @@ const LoginPage = () => {
 
   return (
     <div className="w-full">
-      <Title level={3} className="text-center text-foreground mb-2">
+      <Title level={3} className="text-center mb-2">
         Welcome Back
       </Title>
-      <Text type="secondary" className="block text-center  mb-6">
+      <Text type="secondary" className="block text-center mb-6">
         Please enter your details to log in
       </Text>
 
@@ -86,7 +86,7 @@ const LoginPage = () => {
 
         <Form.Item>
           <Button
-            type="dashed"
+            type="primary"
             htmlType="submit"
             block
             size="large"
