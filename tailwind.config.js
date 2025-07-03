@@ -16,6 +16,8 @@ const config = {
         "content-background": "var(--color-content-background)",
         "selected-background": "var(--color-selected-background)",
         "button-background": "var(--color-button-background)",
+        "auth-form-input-background": "var(--color-auth-form-input-background)",
+        
         //foreground
         foreground: "var(--color-foreground)",
         "lighter-foreground": "var(--color-lighter-foreground)",
@@ -23,13 +25,22 @@ const config = {
         "header-foreground": "var(--color-foreground)",
         "content-foreground": "var(--color-foreground)",
         "auth-form-foreground": "var(--color-auth-form-foreground)",
+        
         //border
-         border: "var(--color-border)",
-         "header-border": "var(--color-header-border)",
-         "sidebar-border": "var(--color-sidebar-border)",
+        border: "var(--color-border)",
+        "header-border": "var(--color-header-border)",
+        "sidebar-border": "var(--color-sidebar-border)",
 
-        card: "var(--color-card)",
+        // Card-related colors
+        card: "var(--color-card-background)",
         "card-foreground": "var(--color-card-foreground)",
+        "bg-card-foreground": "var(--color-bg-card-foreground)",
+        "no-bg-card-foreground": "var(--color-no-bg-card-foreground)",
+        "bg-card": "var(--color-bg-card-background)",
+        "no-bg-card": "var(--color-no-bg-card-background)",
+        "bg-card-header": "var(--color-bg-card-header-background)",
+        "bg-card-body": "var(--color-bg-card-body-background)",
+        
         // Add welcome page specific colors
         "welcome-background": "var(--color-welcome-background)",
         "welcome-foreground": "var(--color-welcome-foreground)",
@@ -77,6 +88,7 @@ const config = {
       },
       boxShadow: {
         custom: "var(--shadow-custom)", // White shadow for dark mode
+        card: "var(--color-card-shadow)", // Added card shadow
       },
       keyframes: {
         shine: {

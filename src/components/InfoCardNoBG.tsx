@@ -1,29 +1,27 @@
-// c:\xampp\htdocs\react-stable-versions\src\components\InfoCardBG.tsx
+// c:\xampp\htdocs\react-stable-versions\src\components\InfoCardNoBG.tsx
 import { Card } from "antd";
 import { useTheme } from "../ThemeContext";
-import ShinyText from "../blocks/TextAnimations/ShinyText/ShinyText";
+// Remove ShinyText import
 import FadeContent from "../blocks/Animations/FadeContent/FadeContent";
 
 /**
- * InfoCardBG Component
+ * InfoCardNoBG Component
  * 
- * A customizable information card component with global background and foreground colors.
+ * A customizable information card component with consistent background color.
  * This component supports dark/light mode and provides extensive customization options
- * for colors and text content in each section except for the title which uses ShinyText animation.
+ * for text content in each section.
  * 
  * Features:
  * - Responsive design with different text sizes for various screen sizes
  * - Support for dark/light mode through ThemeContext
- * - Customizable header background colors for both dark and light modes
+ * - Consistent background color for both header and body sections
  * - Customizable text content for daily and weekly sections
  * - Custom CSS classes for styling each part of the card
  * - Fade-in animation effect when the component mounts
  */
-interface InfoCardBGProps {
-  titleText?: string;                // Text for the card title (uses ShinyText animation)
+interface InfoCardNoBGProps {
+  titleText?: string;                // Text for the card title
   icon: React.ReactNode;             // Icon to display in the header
-  headerLightBgColor?: string;       // Background color for header in light mode
-  headerDarkBgColor?: string;        // Background color for header in dark mode
   dailyText?: string;                // Label for the daily section
   dailyValue?: string;               // Value for the daily section
   weeklyText?: string;               // Label for the weekly section
@@ -35,15 +33,13 @@ interface InfoCardBGProps {
   classNameWeeklyText?: string;      // Additional CSS class for weekly text
   classNameWeeklyValue?: string;     // Additional CSS class for weekly value
   classNameCardBody?: string;        // Additional CSS class for the card body
+  classNameTitle?: string;           // Additional CSS class for the title text
 }
 
 // Define default props directly in the interface
 // These values will be used if the corresponding props are not provided
-const defaultProps: Partial<InfoCardBGProps> = {
+const defaultProps: Partial<InfoCardNoBGProps> = {
   titleText: "something",
-  // Global background colors from CSS variables for consistent theming
-  headerLightBgColor: `var(--color-bg-card-header-background)`,
-  headerDarkBgColor: `var(--color-bg-card-header-background)`,
   dailyText: "Daily",
   dailyValue: "0$",
   weeklyText: "Weekly",
@@ -58,19 +54,17 @@ const defaultProps: Partial<InfoCardBGProps> = {
 };
 
 /**
- * InfoCardBG Component Implementation
+ * InfoCardNoBG Component Implementation
  * 
- * Renders a card with customizable header and body sections.
+ * Renders a card with consistent background color for header and body sections.
  * Uses global background/foreground colors from CSS variables and ThemeContext
  * for consistent theming across the application.
  */
-const InfoCardBG: React.FC<InfoCardBGProps> = (props) => {
+const InfoCardNoBG: React.FC<InfoCardNoBGProps> = (props) => {
   // Merge the default props with the provided props
   const {
     titleText,
     icon,
-    headerLightBgColor,
-    headerDarkBgColor,
     dailyText,
     dailyValue,
     weeklyText,
@@ -81,11 +75,16 @@ const InfoCardBG: React.FC<InfoCardBGProps> = (props) => {
     classNameDailyValue,
     classNameWeeklyText,
     classNameWeeklyValue,
-    classNameCardBody
+    classNameCardBody,
+    classNameTitle = ''
   } = { ...defaultProps, ...props };
 
   // Get the current theme mode (dark/light)
   const { isDarkMode } = useTheme();
+  
+  // Use the no-bg-card-background for both header and body
+  const bgColor = 'var(--color-no-bg-card-background)';
+  
   return (
     // FadeContent provides animation when the component mounts
     <FadeContent
@@ -101,8 +100,8 @@ const InfoCardBG: React.FC<InfoCardBGProps> = (props) => {
         className={`w-full rounded-[0.5rem] overflow-hidden shadow-for-card p-0 m-0 ${classNameCard}`}
         styles={{
           header: {
-            // Apply different background colors based on theme mode
-            backgroundColor: ` ${isDarkMode ? headerLightBgColor : headerDarkBgColor}`,
+            // Apply the same background color for header
+            backgroundColor: bgColor,
             padding: 0,
             borderBottom: "none",
             height: "auto",
@@ -115,28 +114,20 @@ const InfoCardBG: React.FC<InfoCardBGProps> = (props) => {
         title={
           // Card header with title and icon
           <div
-            className={`p-[0.3rem] md:px-[0.4rem] lg:px-[0.6rem] flex justify-between items-center text-bg-card-foreground ${
-              isDarkMode ? headerLightBgColor : headerDarkBgColor
-            }  text text-xs md:text-sm lg:text-base font-medium 
-            `}
+            className={`p-[0.3rem] md:px-[0.4rem] lg:px-[0.6rem] flex justify-between items-center text-bg-card-foreground bg-no-bg-card text text-xs md:text-sm lg:text-base font-medium`}
           >
-            {/* ShinyText animation for title - not customizable in terms of styling */}
-            <ShinyText
-              text={titleText || ''}
-              disabled={false}
-              speed={3}
-              className={
-                isDarkMode ? "custom-class  light-mode" : "custom-class"
-              }
-            />
+            {/* Regular text for title instead of ShinyText */}
+            <span className={`${isDarkMode ? "text-white" : "text-gray-800"} ${classNameTitle}`}>
+              {titleText || ''}
+            </span>
             {icon}
           </div>
         }
       >
         {/* Card body with daily and weekly information */}
-        <div className={`bg-bg-card-body p-[0.5rem] md:p-[0.6rem] lg:p-[0.8rem] ${classNameCardBody}`}>
+        <div className={`bg-no-bg-card p-[0.5rem] md:p-[0.6rem] lg:p-[0.8rem] ${classNameCardBody}`}>
           {/* Daily information row with customizable text and styling */}
-          <div className="text-xs text-bg-card-foreground md:text-base lg:text-lg  flex justify-between font-bold mb-2">
+          <div className="text-xs text-bg-card-foreground md:text-base lg:text-lg flex justify-between font-bold mb-2">
             <span className={classNameDailyText}>{dailyText}</span>
             <span className={classNameDailyValue}>{dailyValue}</span>
           </div>
@@ -151,4 +142,4 @@ const InfoCardBG: React.FC<InfoCardBGProps> = (props) => {
   );
 };
 
-export default InfoCardBG;
+export default InfoCardNoBG;

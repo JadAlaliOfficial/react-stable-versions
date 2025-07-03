@@ -294,7 +294,7 @@ const MainLayout = () => {
 
             {/* Main content container where routes will be rendered */}
             <Content
-              className={`p-2 md:p-4 lg:p-6 my-0 min-h-[280px] rounded-lg bg-lighter-background shadow-custom`}
+              className={`m-1 p-2 md:p-4 lg:p-6 min-h-[280px] rounded-lg bg-lighter-background shadow-custom`}
             >
               <Outlet /> {/* This is where child routes will be rendered */}
             </Content>

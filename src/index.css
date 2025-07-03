@@ -28,6 +28,16 @@
   --color-selected-background: #6f78de;
   --color-button-background: #6f78de;
   
+  /* Card-related Colors */
+  --color-card-background: #ffffff;
+  --color-bg-card-background: #ffffff;
+  --color-no-bg-card-background: #ffffff;
+  --color-bg-card-header-background: #767676;
+  --color-bg-card-body-background: #ffffff;
+  --color-card-foreground: #000000;
+  --color-bg-card-foreground: #000000;
+  --color-no-bg-card-foreground: #000000;
+  
   /* Component-specific Foreground Colors */
   --color-sidebar-foreground: var(--color-foreground);
   --color-header-foreground: var(--color-foreground);
@@ -45,7 +55,9 @@
   --font-sans: sans-serif;
   
   /* Effects */
+  
   --shadow-custom: 0 0px 2px rgba(0, 0, 0, 0.5);
+  --shadow-card-shadow: var(--shadow-custom);
 }
 
 /* ======================================================
@@ -68,6 +80,16 @@ html.dark {
   --color-selected-background: #6f78de;
   --color-button-background: #6f78de;
   
+  /* Card-related Colors */
+  --color-card-background: #000000;
+  --color-bg-card-background: #000000;
+  --color-no-bg-card-background: #000000;
+  --color-bg-card-header-background: #767676;
+  --color-bg-card-body-background: #000000;
+  --color-card-foreground: #ffffff;
+  --color-bg-card-foreground: #ffffff;
+  --color-no-bg-card-foreground: #ffffff;
+  
   /* Component-specific Foreground Colors */
   --color-sidebar-foreground: var(--color-foreground);
   --color-header-foreground: var(--color-foreground);
@@ -82,7 +104,9 @@ html.dark {
   --color-header-border: var(--color-border);
   
   /* Effects */
+  
   --shadow-custom: 0 0px 2px rgba(255, 255, 255, 0.5);
+  --shadow-card-shadow: var(--shadow-custom);
 }
 
 /* ======================================================
@@ -159,4 +183,8 @@ span.ant-input-affix-wrapper {
     &:focus {
         box-shadow: none;
     }
+}
+
+.shadow-for-card{
+  box-shadow: var(--shadow-card-shadow) !important;
 }
