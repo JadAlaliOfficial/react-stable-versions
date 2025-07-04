@@ -96,8 +96,8 @@ const InfoCardNoBG: React.FC<InfoCardNoBGProps> = (props) => {
     >
       {/* Main card component with customizable styling */}
       <Card
-        bordered={false}
-        className={`w-full rounded-[0.5rem] overflow-hidden shadow-for-card p-0 m-0 ${classNameCard}`}
+        bordered={true}
+        className={`w-full rounded-[0.5rem] overflow-hidden shadow-custom p-0 m-0 ${classNameCard}`}
         styles={{
           header: {
             // Apply the same background color for header

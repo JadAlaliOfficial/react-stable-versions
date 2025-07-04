@@ -4,6 +4,7 @@ import { useTheme } from "../ThemeContext";
 import ShinyText from "../blocks/TextAnimations/ShinyText/ShinyText";
 import FadeContent from "../blocks/Animations/FadeContent/FadeContent";
 import ListItem from "./ListItem";
+import React from "react";
 
 /**
  * ListCardBG Component
@@ -19,6 +20,7 @@ import ListItem from "./ListItem";
  * - List items displayed using Ant Design List component
  * - Custom CSS classes for styling each part of the card
  * - Fade-in animation effect when the component mounts
+ * - Full support for all ListItem component props
  */
 interface ListCardBGProps {
   titleText?: string; // Text for the card title (uses ShinyText animation)
@@ -27,30 +29,95 @@ interface ListCardBGProps {
   containerWidth?: string; // Width of the container (Tailwind class)
   classNameCard?: string; // Additional CSS class for the card
   classNameCardBody?: string; // Additional CSS class for the card body
-  leftIcon?: React.ReactNode; // Icon to display on the left side of the list item
-  rightIcon?: React.ReactNode; // Icon to display on the right side of the list item
-  nameText?: string; // Name text to display
-  percentageValue?: string; // Percentage value to display
-  dollarValue?: string; // Dollar value to display
-  percentageChange?: string; // Percentage change to display
+  
+  // List item props (matching ListItemProps)
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
+  nameText?: string;
+  percentageValue?: string;
+  dollarValue?: string;
+  percentageChange?: string;
+  
+  // ClassName props from ListItem
+  containerClassName?: string;
+  leftIconClassName?: string;
+  nameTextClassName?: string;
+  percentageValueClassName?: string;
+  dollarValueClassName?: string;
+  percentageChangeClassName?: string;
+  rightIconClassName?: string;
+  leftColumnClassName?: string;
+  rightColumnClassName?: string;
+  
+  // Support for multiple list items
+  listData?: Array<{
+    leftIcon?: React.ReactNode;
+    nameText?: string;
+    percentageValue?: string;
+    dollarValue?: string;
+    percentageChange?: string;
+    rightIcon?: React.ReactNode;
+    isBold?: boolean;
+    // Individual classNames can be overridden per item
+    containerClassName?: string;
+    leftIconClassName?: string;
+    nameTextClassName?: string;
+    percentageValueClassName?: string;
+    dollarValueClassName?: string;
+    percentageChangeClassName?: string;
+    rightIconClassName?: string;
+    leftColumnClassName?: string;
+    rightColumnClassName?: string;
+  }>;
 }
 
 // Define default props directly in the interface
 // These values will be used if the corresponding props are not provided
 const defaultProps: Partial<ListCardBGProps> = {
-  titleText: "something",
+  titleText: "Card Title",
   // Global background colors from CSS variables for consistent theming
   headerLightBgColor: `var(--color-bg-card-header-background)`,
   headerDarkBgColor: `var(--color-bg-card-header-background)`,
   containerWidth: "w-full",
   classNameCard: "",
   classNameCardBody: "",
+  
+  // List item defaults
   leftIcon: null,
   rightIcon: null,
   nameText: "Item Name",
   percentageValue: "0%",
   dollarValue: "$0",
   percentageChange: "+0%",
+  
+  // Default className props
+  containerClassName: '',
+  leftIconClassName: '',
+  nameTextClassName: '',
+  percentageValueClassName: '',
+  dollarValueClassName: '',
+  percentageChangeClassName: '',
+  rightIconClassName: '',
+  leftColumnClassName: 'flex flex-col justify-center items-center',
+  rightColumnClassName: 'flex flex-col justify-center items-center',
+  
+  // Default list data
+  listData: [
+    {
+      isBold: true,
+      nameText: "Item 1",
+      percentageValue: "50%",
+      dollarValue: "$100",
+      percentageChange: "+5%"
+    },
+    {
+      isBold: false,
+      nameText: "Item 2",
+      percentageValue: "30%",
+      dollarValue: "$60",
+      percentageChange: "-2%"
+    }
+  ]
 };
 
 /**
@@ -69,38 +136,22 @@ const ListCardBG: React.FC<ListCardBGProps> = (props) => {
     containerWidth,
     classNameCard,
     classNameCardBody,
-    leftIcon,
-    rightIcon,
-    nameText,
-    percentageValue,
-    dollarValue,
-    percentageChange,
+    listData,
+    // ListItem props
+    containerClassName,
+    leftIconClassName,
+    nameTextClassName,
+    percentageValueClassName,
+    dollarValueClassName,
+    percentageChangeClassName,
+    rightIconClassName,
+    leftColumnClassName,
+    rightColumnClassName,
+    // Other props that might be passed to individual items
+    ...restItemProps
   } = { ...defaultProps, ...props };
 
-  // Get the current theme mode (dark/light)
   const { isDarkMode } = useTheme();
-
-  // Create list data from props
-  const listData = [
-    {
-      isBold: true,
-      leftIcon: leftIcon,
-      nameText: nameText,
-      percentageValue: percentageValue,
-      dollarValue: dollarValue,
-      percentageChange: percentageChange,
-      rightIcon: rightIcon,
-    },
-    {
-      isBold: false,
-      leftIcon: leftIcon,
-      nameText: nameText,
-      percentageValue: percentageValue,
-      dollarValue: dollarValue,
-      percentageChange: percentageChange,
-      rightIcon: rightIcon,
-    },
-  ];
 
   return (
     // FadeContent provides animation when the component mounts
@@ -113,14 +164,12 @@ const ListCardBG: React.FC<ListCardBGProps> = (props) => {
     >
       {/* Main card component with customizable styling */}
       <Card
-        bordered={false}
-        className={`w-full rounded-[0.5rem] overflow-hidden shadow-for-card p-0 m-0 ${classNameCard}`}
+        bordered={true}
+        className={`w-full rounded-[0.5rem] overflow-hidden border-none shadow-custom p-0 m-0 ${classNameCard}`}
         styles={{
           header: {
             // Apply different background colors based on theme mode
-            backgroundColor: ` ${
-              isDarkMode ? headerLightBgColor : headerDarkBgColor
-            }`,
+            backgroundColor: ` ${isDarkMode ? headerLightBgColor : headerDarkBgColor}`,
             padding: 0,
             borderBottom: "none",
             height: "auto",
@@ -133,9 +182,9 @@ const ListCardBG: React.FC<ListCardBGProps> = (props) => {
         title={
           // Card header with title and icon
           <div
-            className={`p-[0.3rem] md:px-[0.4rem] lg:px-[0.6rem] flex justify-between items-center text-bg-card-foreground ${
+            className={`p-[0.3rem] md:px-[0.4rem] lg:px-[0.6rem] flex justify-center items-center text-bg-card-foreground ${
               isDarkMode ? headerLightBgColor : headerDarkBgColor
-            }  text text-xs md:text-sm lg:text-base font-medium 
+            }  text text-sm md:text-base lg:text-lg font-medium 
             `}
           >
             {/* ShinyText animation for title - not customizable in terms of styling */}
@@ -155,12 +204,24 @@ const ListCardBG: React.FC<ListCardBGProps> = (props) => {
           className={`bg-bg-card-body p-[0.5rem] md:p-[0.6rem] lg:p-[0.8rem] ${classNameCardBody}`}
         >
           <List
+          
             dataSource={listData}
             renderItem={(item) => (
-              <List.Item
-               
-              >
-                <ListItem {...item} />
+              <List.Item>
+                <ListItem
+                  {...restItemProps}
+                  {...item}
+                  // Apply global classNames unless overridden by item-specific ones
+                  containerClassName={item.containerClassName || containerClassName}
+                  leftIconClassName={item.leftIconClassName || leftIconClassName}
+                  nameTextClassName={item.nameTextClassName || nameTextClassName}
+                  percentageValueClassName={item.percentageValueClassName || percentageValueClassName}
+                  dollarValueClassName={item.dollarValueClassName || dollarValueClassName}
+                  percentageChangeClassName={item.percentageChangeClassName || percentageChangeClassName}
+                  rightIconClassName={item.rightIconClassName || rightIconClassName}
+                  leftColumnClassName={item.leftColumnClassName || leftColumnClassName}
+                  rightColumnClassName={item.rightColumnClassName || rightColumnClassName}
+                />
               </List.Item>
             )}
           />

@@ -185,6 +185,19 @@ span.ant-input-affix-wrapper {
     }
 }
 
-.shadow-for-card{
-  box-shadow: var(--shadow-card-shadow) !important;
+
+.ant-list-item{
+  padding: 0.1rem 0 !important;
+}
+
+@media (min-width: 768px) {
+  .ant-list-item {
+    padding: 0.2rem 0 !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ant-list-item {
+    padding: 0.3rem 0 !important;
+  }
 }
