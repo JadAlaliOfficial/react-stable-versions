@@ -1,11 +1,58 @@
-import { CarOutlined, RiseOutlined, FallOutlined } from "@ant-design/icons";
+import {
+  CarOutlined,
+  RiseOutlined,
+  FallOutlined,
+  TagOutlined,
+} from "@ant-design/icons";
 import InfoCardBG from "../components/InfoCardBG";
 import InfoCardNoBG from "../components/InfoCardNoBG";
 import ListCardBG from "../components/ListCardBG";
 import { useTheme } from "../ThemeContext";
+import ListCardNoBG from "../components/ListCardNoBG";
+import ListCardTagTabs from "../components/ListCardTagTabs";
 
 const Dashboard = () => {
   const { isDarkMode } = useTheme();
+  const listData = [
+    {
+      leftText: "Completed Transactions",
+      rightValue: "1,245",
+      tagType: "OT", // Green tag
+      isBold: true,
+    },
+    {
+      leftText: "Failed Transactions",
+      rightValue: "12",
+      tagType: "none",
+    },
+    {
+      leftText: "Failed Transactions",
+      rightValue: "12",
+      tagType: "none",
+    },
+
+    {
+      leftText: "Pending Transactions",
+      rightValue: "87",
+      tagType: "NA", // Red tag
+      leftTextClassName: "text-yellow-500",
+    },
+    {
+      leftText: "Failed Transactions",
+      rightValue: "12",
+      tagType: "none",
+    },
+    {
+      leftText: "Failed Transactions",
+      rightValue: "12",
+      tagType: "none",
+    },
+    {
+      leftText: "Failed Transactions",
+      rightValue: "12",
+      tagType: "none",
+    },
+  ];
 
   return (
     <>
@@ -149,6 +196,49 @@ const Dashboard = () => {
           // percentageValueClassName="text-sm text-gray-600",
           // dollarValueClassName="font-medium"
         />
+      </div>
+      <div className="flex justify-between gap-2 mt-2">
+        <ListCardNoBG
+          titleText="Transaction Summary"
+          icon={<TagOutlined />}
+          listData={listData}
+          containerWidth="w-full "
+        />
+        <ListCardNoBG
+          titleText="Transaction Summary"
+          icon={<TagOutlined />}
+          listData={listData}
+          containerWidth="w-full "
+        />
+        <ListCardNoBG
+          titleText="Transaction Summary"
+          icon={<TagOutlined />}
+          listData={listData}
+          containerWidth="w-full "
+        />
+      </div>
+      <div className="flex justify-between gap-2 mt-2">
+        <ListCardTagTabs
+  titleText="My Tabbed Card"
+  tabs={[
+    {
+      key: 'performance',
+      label: 'Performance',
+      listData: [
+        { leftText: "Speed", rightValue: "90%", tagType: 'OT' },
+        { leftText: "Accuracy", rightValue: "85%", tagType: 'NA' }
+      ]
+    },
+    {
+      key: 'resources',
+      label: 'Resources',
+      listData: [
+        { leftText: "CPU", rightValue: "60%", tagType: 'none' },
+        { leftText: "Memory", rightValue: "45%", tagType: 'none' }
+      ]
+    }
+  ]}
+/>
       </div>
     </>
   );
