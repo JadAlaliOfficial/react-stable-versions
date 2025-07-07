@@ -289,7 +289,7 @@ const MainLayout = () => {
                 { title: "Home" },
                 { title: location.pathname.split("/")[1] || "Dashboard" },
               ]}
-              className="my-4"
+              className="my-4 ml-2"
             />
 
             {/* Main content container where routes will be rendered */}

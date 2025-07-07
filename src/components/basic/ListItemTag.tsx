@@ -20,7 +20,7 @@ const ListItemTag: React.FC<ListItemTagProps> = ({
 }) => {
   return (
     <div
-      className={`flex justify-between items-center text-xs md:text-base w-full ${containerClassName}`}
+      className={`flex justify-between items-center text-xs md:text-base lg:text-lg w-full ${containerClassName}`}
     >
       <span className={`text-bg-card-foreground/55 ${leftTextClassName}`}>
         {leftText}

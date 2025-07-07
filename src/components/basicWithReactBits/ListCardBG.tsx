@@ -1,9 +1,9 @@
 // c:\xampp\htdocs\react-stable-versions\src\components\ListCardBG.tsx
 import { Card, List } from "antd";
-import { useTheme } from "../ThemeContext";
-import ShinyText from "../blocks/TextAnimations/ShinyText/ShinyText";
-import FadeContent from "../blocks/Animations/FadeContent/FadeContent";
-import ListItem from "./ListItem";
+import { useTheme } from "../../ThemeContext";
+import ShinyText from "../../blocks/TextAnimations/ShinyText/ShinyText";
+import FadeContent from "../../blocks/Animations/FadeContent/FadeContent";
+import ListItem from "../basic/ListItem";
 import React from "react";
 
 /**
