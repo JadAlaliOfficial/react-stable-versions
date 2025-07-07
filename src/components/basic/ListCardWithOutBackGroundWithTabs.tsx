@@ -2,6 +2,7 @@ import { Card, List, Tabs } from "antd";
 import type { TabsProps } from "antd";
 import { useTheme } from "../../ThemeContext";
 import ListItemTag from "./ListItemTag";
+import { motion } from "framer-motion";
 
 interface ListCardWithOutBackGroundWithTabsProps {
   titleText?: string;
@@ -157,22 +158,33 @@ const ListCardWithOutBackGroundWithTabs: React.FC<
             loading={loading}
             className={listClassName}
             locale={{ emptyText: "" }} // Hide default "No Data"
-            renderItem={(item) => (
-              <List.Item className="!p-2 !border-0 !mb-2 last:!mb-1">
-                <ListItemTag
-                  {...restItemProps}
-                  {...item}
-                  containerClassName={
-                    item.containerClassName || containerClassName
-                  }
-                  leftTextClassName={
-                    item.leftTextClassName || leftTextClassName
-                  }
-                  rightValueClassName={
-                    item.rightValueClassName || rightValueClassName
-                  }
-                />
-              </List.Item>
+            renderItem={(item, index) => (
+              <motion.div
+                initial={{ x: 50, y: 50 }}
+                animate={{ x: 0, y: 0 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 100,
+                  damping: 10,
+                  delay: index * 0.05, // Stagger the animations
+                }}
+              >
+                <List.Item className="!p-2 !border-0 !mb-2 last:!mb-1">
+                  <ListItemTag
+                    {...restItemProps}
+                    {...item}
+                    containerClassName={
+                      item.containerClassName || containerClassName
+                    }
+                    leftTextClassName={
+                      item.leftTextClassName || leftTextClassName
+                    }
+                    rightValueClassName={
+                      item.rightValueClassName || rightValueClassName
+                    }
+                  />
+                </List.Item>
+              </motion.div>
             )}
           />
         )}
@@ -190,22 +202,33 @@ const ListCardWithOutBackGroundWithTabs: React.FC<
               loading={loading}
               className={listClassName}
               locale={{ emptyText: "" }} // Hide default "No Data"
-              renderItem={(item) => (
-                <List.Item className="!p-2 !border-0 !mb-2 last:!mb-0">
-                  <ListItemTag
-                    {...restItemProps}
-                    {...item}
-                    containerClassName={
-                      item.containerClassName || containerClassName
-                    }
-                    leftTextClassName={
-                      item.leftTextClassName || leftTextClassName
-                    }
-                    rightValueClassName={
-                      item.rightValueClassName || rightValueClassName
-                    }
-                  />
-                </List.Item>
+              renderItem={(item, index) => (
+                <motion.div
+                  initial={{ x: 50, y: 50 }}
+                  animate={{ x: 0, y: 0 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 100,
+                    damping: 10,
+                    delay: index * 0.05, // Stagger the animations
+                  }}
+                >
+                  <List.Item className="!p-2 !border-0 !mb-2 last:!mb-0">
+                    <ListItemTag
+                      {...restItemProps}
+                      {...item}
+                      containerClassName={
+                        item.containerClassName || containerClassName
+                      }
+                      leftTextClassName={
+                        item.leftTextClassName || leftTextClassName
+                      }
+                      rightValueClassName={
+                        item.rightValueClassName || rightValueClassName
+                      }
+                    />
+                  </List.Item>
+                </motion.div>
               )}
             />
           </>

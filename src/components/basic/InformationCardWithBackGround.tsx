@@ -1,6 +1,7 @@
 // c:\xampp\htdocs\react-stable-versions\src\components\InformationCardWithBackGround.tsx
 import { Card } from "antd";
 import { useTheme } from "../../ThemeContext";
+import { motion } from "framer-motion";
 
 /**
  * InformationCardWithBackGround Component
@@ -63,7 +64,9 @@ const defaultProps: Partial<InformationCardWithBackGroundProps> = {
  * Uses global background/foreground colors from CSS variables and ThemeContext
  * for consistent theming across the application.
  */
-const InformationCardWithBackGround: React.FC<InformationCardWithBackGroundProps> = (props) => {
+const InformationCardWithBackGround: React.FC<
+  InformationCardWithBackGroundProps
+> = (props) => {
   // Merge the default props with the provided props
   const {
     titleText,
@@ -88,7 +91,10 @@ const InformationCardWithBackGround: React.FC<InformationCardWithBackGroundProps
   const { isDarkMode } = useTheme();
 
   return (
-    <div className={containerWidth}>
+    <motion.div
+      whileHover={{ scale: 1.03 , boxShadow:"var(--shadow-custom-lg)"}}
+      className={` rounded-[0.5rem] ${containerWidth}`} // Tailwind classes
+    >
       {/* Main card component with customizable styling */}
       <Card
         bordered={true}
@@ -138,7 +144,7 @@ const InformationCardWithBackGround: React.FC<InformationCardWithBackGroundProps
           </div>
         </div>
       </Card>
-    </div>
+    </motion.div>
   );
 };
 
@@ -165,10 +171,10 @@ export default InformationCardWithBackGround;
 // classNameCardBody    | string           | ""            | Classes for the entire content area below header
 // classNameTitle       | string           | ""            | Classes for title text (replaces ShinyText)
 
-
 //an example of using this component and use all it's properties
 
-{/* <InformationCardWithBackGround
+{
+  /* <InformationCardWithBackGround
   // Title & Icon
   titleText="Performance Metrics"
   icon={<ThunderboltOutlined className="text-yellow-500" />}
@@ -192,4 +198,5 @@ export default InformationCardWithBackGround;
   classNameWeeklyValue="text-blue-600 font-bold"
   // Body Styling
   classNameCardBody="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900"
-/> */}
+/> */
+}

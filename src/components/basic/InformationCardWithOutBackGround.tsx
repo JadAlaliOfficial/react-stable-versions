@@ -1,6 +1,7 @@
 // c:\xampp\htdocs\react-stable-versions\src\components\InformationCardWithOutBackGround.tsx
 import { Card } from "antd";
 import { useTheme } from "../../ThemeContext";
+import { motion } from "framer-motion";
 
 /**
  * InformationCardWithOutBackGround Component
@@ -86,7 +87,10 @@ const InformationCardWithOutBackGround: React.FC<
 
   return (
     // Main card container without FadeContent
-    <div className={containerWidth}>
+    <motion.div
+    whileHover={{ scale: 1.03 , boxShadow:"var(--shadow-custom-lg)"}}
+      className={` rounded-[0.5rem] ${containerWidth}`} // Tailwind classes
+      >
       {/* Main card component with customizable styling */}
       <Card
         bordered={true}
@@ -137,7 +141,7 @@ const InformationCardWithOutBackGround: React.FC<
           </div>
         </div>
       </Card>
-    </div>
+    </motion.div>
   );
 };
 

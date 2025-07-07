@@ -3,6 +3,7 @@ import { Card, List } from "antd";
 import { useTheme } from "../../ThemeContext";
 import ListItem from "./ListItem";
 import React from "react";
+import { motion } from "framer-motion";
 
 /**
  * ListCardWithBackGround Component
@@ -194,7 +195,17 @@ const ListCardWithBackGround: React.FC<ListCardWithBackGroundProps> = (
         >
           <List
             dataSource={listData}
-            renderItem={(item) => (
+            renderItem={(item,index) => (
+              <motion.div
+                initial={{ x: 50, y: 50 }}
+                animate={{ x: 0, y: 0 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 100,
+                  damping: 10,
+                  delay: index * 0.05, // Stagger the animations
+                }}
+              >
               <List.Item>
                 <ListItem
                   {...restItemProps}
@@ -229,6 +240,7 @@ const ListCardWithBackGround: React.FC<ListCardWithBackGroundProps> = (
                   }
                 />
               </List.Item>
+              </motion.div>
             )}
           />
         </div>

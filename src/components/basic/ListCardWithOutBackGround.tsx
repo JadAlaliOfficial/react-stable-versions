@@ -1,6 +1,7 @@
 import { Card, List } from "antd";
 import { useTheme } from "../../ThemeContext";
 import ListItemTag from "./ListItemTag";
+import { motion } from "framer-motion";
 
 interface ListCardWithOutBackGroundProps {
   titleText?: string;
@@ -144,22 +145,33 @@ const ListCardWithOutBackGround: React.FC<ListCardWithOutBackGroundProps> = (
               loading={loading}
               className={listClassName}
               locale={{ emptyText: "" }} // Hide default "No Data"
-              renderItem={(item) => (
-                <List.Item className="!p-2 !border-0 !mb-2 last:!mb-0">
-                  <ListItemTag
-                    {...restItemProps}
-                    {...item}
-                    containerClassName={
-                      item.containerClassName || containerClassName
-                    }
-                    leftTextClassName={
-                      item.leftTextClassName || leftTextClassName
-                    }
-                    rightValueClassName={
-                      item.rightValueClassName || rightValueClassName
-                    }
-                  />
-                </List.Item>
+              renderItem={(item, index) => (
+                <motion.div
+                  initial={{ x: 50, y: 50 }}
+                  animate={{ x: 0, y: 0 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 100,
+                    damping: 10,
+                    delay: index * 0.05, // Stagger the animations
+                  }}
+                >
+                  <List.Item className="!p-2 !border-0 !mb-2 last:!mb-0">
+                    <ListItemTag
+                      {...restItemProps}
+                      {...item}
+                      containerClassName={
+                        item.containerClassName || containerClassName
+                      }
+                      leftTextClassName={
+                        item.leftTextClassName || leftTextClassName
+                      }
+                      rightValueClassName={
+                        item.rightValueClassName || rightValueClassName
+                      }
+                    />
+                  </List.Item>
+                </motion.div>
               )}
             />
           )}
@@ -177,22 +189,33 @@ const ListCardWithOutBackGround: React.FC<ListCardWithOutBackGroundProps> = (
                 loading={loading}
                 className={listClassName}
                 locale={{ emptyText: "" }} // Hide default "No Data"
-                renderItem={(item) => (
-                  <List.Item className="!p-2 !border-0 !mb-2 last:!mb-0">
-                    <ListItemTag
-                      {...restItemProps}
-                      {...item}
-                      containerClassName={
-                        item.containerClassName || containerClassName
-                      }
-                      leftTextClassName={
-                        item.leftTextClassName || leftTextClassName
-                      }
-                      rightValueClassName={
-                        item.rightValueClassName || rightValueClassName
-                      }
-                    />
-                  </List.Item>
+                renderItem={(item, index) => (
+                  <motion.div
+                    initial={{ x: 50, y: 50 }}
+                    animate={{ x: 0, y: 0 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 100,
+                      damping: 10,
+                      delay: index * 0.05, // Stagger the animations
+                    }}
+                  >
+                    <List.Item className="!p-2 !border-0 !mb-2 last:!mb-0">
+                      <ListItemTag
+                        {...restItemProps}
+                        {...item}
+                        containerClassName={
+                          item.containerClassName || containerClassName
+                        }
+                        leftTextClassName={
+                          item.leftTextClassName || leftTextClassName
+                        }
+                        rightValueClassName={
+                          item.rightValueClassName || rightValueClassName
+                        }
+                      />
+                    </List.Item>
+                  </motion.div>
                 )}
               />
             </>
@@ -226,7 +249,8 @@ export default ListCardWithOutBackGround;
 
 //an example of using this component and use all it's properties
 
-{/* <ListCardWithOutBackGround
+{
+  /* <ListCardWithOutBackGround
   // Header Section
   titleText="Project Milestones"
   classNameTitle="text-xl font-bold text-blue-600 dark:text-blue-400"
@@ -283,4 +307,5 @@ export default ListCardWithOutBackGround;
       rightValueClassName: "text-yellow-600 dark:text-yellow-400",
     },
   ]}
-/> */}
+/> */
+}
